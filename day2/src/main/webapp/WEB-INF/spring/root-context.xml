@@ -10,7 +10,7 @@
 	<!-- Namespaces 에서 context를 추가하고 아래 내용 설정 	-->
 	<context:property-placeholder location="classpath:/properties/*" file-encoding="UTF-8"/>
 
-	<!-- cf) util:properties 를 이용하는 방법도 있음... -->
+	<!-- cf) util:properties 를 이용하는 방법도 있음... https://cornswrold.tistory.com/95 -->
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
