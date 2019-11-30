@@ -10,23 +10,23 @@
 		where num = #{num}
 	</select>
 	 -->
-	<select id="boardSelect" parameterType="com.iu.s1.board.notice.NoticeVO" resultType="com.iu.s1.board.notice.NoticeVO">
+	<select id="boardSelect" parameterType="NoticeVO" resultType="NoticeVO">
 		select * from notice
 		where num = #{num}
 	</select>
 	
 	<!-- insert, update, delete의 결과는 숫자이기 때문에 resultType를 쓰지 않음, NoticeVO 보다 BoardVO를 보냄 -->
-	<update id="boardUpdate" parameterType="com.iu.s1.board.BoardVO">
+	<update id="boardUpdate" parameterType="BoardVO">
 		update notice 
 		set title=#{title}, contents=#{contents} 
 		where num = #{num}
 	</update>
 	
-	<delete id="boardDelete" parameterType="com.iu.s1.board.BoardVO">
+	<delete id="boardDelete" parameterType="BoardVO">
 		delete from notice where num = #{num}	
 	</delete>
 	
-	<insert id="boardWrite" parameterType="com.iu.s1.board.BoardVO">
+	<insert id="boardWrite" parameterType="BoardVO">
 		insert into notice values
 		(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0 )	
 	</insert>
