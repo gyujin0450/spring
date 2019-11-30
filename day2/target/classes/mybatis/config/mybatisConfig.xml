@@ -9,5 +9,6 @@
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		<typeAlias type="com.iu.s1.board.BoardVO" alias="BoardVO"/>
   		<typeAlias type="com.iu.s1.board.notice.NoticeVO" alias="NoticeVO"/>
+  		<typeAlias type="com.iu.s1.board.qna.QnaVO" alias="QnaVO"/>
   	</typeAliases>
   </configuration>
