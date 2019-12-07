@@ -2,6 +2,7 @@ package com.iu.s1.board.notice;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class NoticeController {
@@ -13,9 +14,13 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/board/boardWrite")
-	public void boardWirte() throws Exception {
+	public ModelAndView boardWirte() throws Exception {
+		ModelAndView mv = new ModelAndView();
 		System.out.println("notieWrite");
-		// return "board/boardWrite";
+
+		mv.setViewName("board/boadWrite");
+		
+		return mv;
 	}
 	
 	
