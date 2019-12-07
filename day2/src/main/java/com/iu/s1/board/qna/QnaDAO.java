@@ -34,8 +34,7 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public List<BoardVO> boardList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(NAMESPACE+"boardList");
 	}
 
 	@Override

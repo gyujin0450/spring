@@ -4,6 +4,16 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="QnaMapper">
+
+	<select id="boardList" resultType="QnaVO">
+		select * from
+		(select rownum R, Q.* from
+			(select * from qna order by ref desc, step asc) Q
+		)
+		where R between 1 and 20
+	
+	</select>
+
 	<select id="boardSelect" parameterType="QnaVO" resultType="QnaVO">
 		select * from qna where num = #{num}
 	</select>

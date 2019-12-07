@@ -24,7 +24,6 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE+"boardUpdate", boardVO);
 	}
 
