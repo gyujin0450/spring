@@ -12,10 +12,10 @@ public class NoticeController {
 		return "board/boardList";
 	}
 	
-	@RequestMapping(value="/notice/boardWrite")
-	public String boardWirte() throws Exception {
+	@RequestMapping(value="/board/boardWrite")
+	public void boardWirte() throws Exception {
 		System.out.println("notieWrite");
-		return "board/boardWrite";
+		// return "board/boardWrite";
 	}
 	
 	
