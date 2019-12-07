@@ -2,18 +2,23 @@ package com.iu.s1.board.notice;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value = "/notice/**") // Notice 아래 모든 폴덜/파일
 public class NoticeController {
 	
-	@RequestMapping(value="/notice/boardList")
-	public String boardList() throws Exception {
+	@RequestMapping(value="boardList", method = {RequestMethod.POST, RequestMethod.GET })
+	public String boardList(String name, int age) throws Exception {
+		// TO DO : 파라미터 이름과 동일 이름으로 처리 
+		System.out.println(name);
+		System.out.println(age);
 		System.out.println("notieBoard");
 		return "board/boardList";
 	}
 	
-	@RequestMapping(value="/board/boardWrite")
+	@RequestMapping(value="boardWrite")
 	public ModelAndView boardWirte() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("notieWrite");
@@ -23,7 +28,7 @@ public class NoticeController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/notice/boardSelect")
+	@RequestMapping(value = "boardSelect")
 	public ModelAndView boardSelect() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("boardSelect");
