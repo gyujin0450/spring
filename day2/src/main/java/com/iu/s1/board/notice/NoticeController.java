@@ -18,6 +18,38 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@RequestMapping(value = "boardDelete", method=RequestMethod.GET)
+	public String boardDelete(BoardVO boardVO) throws Exception {
+		noticeService.boardDelete(boardVO);
+		return "redirect:./boardList";
+	}
+		
+	@RequestMapping(value = "boardUpdate", method= RequestMethod.GET)
+	public ModelAndView boardUpdate(BoardVO boardVO) throws Exception {
+		// TODO : 컨트롤러와 view 연결 작업
+		ModelAndView mv = new ModelAndView();		
+		boardVO = noticeService.boardSelect(boardVO);
+		mv.addObject("vo", boardVO);
+		mv.setViewName("board/boardUpdate");
+		
+		return mv;
+	}
+	
+	// 수정사항 DB 반영
+	@RequestMapping(value = "boardUpdate", method= RequestMethod.POST)
+	public String boardUpdateDB(BoardVO boardVO) throws Exception {
+		
+		int result = noticeService.boardUpdate(boardVO);
+		String view = "redirect:./boardList";
+		
+		if(result > 0 ) {
+			view = "redirect:./boardSelect?num="+boardVO.getNum();
+		}
+		
+		return view;
+	}
+	
+	
 	@RequestMapping(value="boardList", method = {RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView boardList() throws Exception {
 		ModelAndView mv = new ModelAndView();
