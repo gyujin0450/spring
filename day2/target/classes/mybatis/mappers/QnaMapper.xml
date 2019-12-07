@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://mybatis.org/mybatis-3/ko/configuration.html#mappers -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QnaMapper">
+	<select id="boardSelect" parameterType="QnaVO" resultType="QnaVO">
+		select * from qna where num = #{num}
+	</select>
+	
+	<update id="boardUpdate" parameterType="QnaVO">
+		update qna 
+		set title=#{title}, contents=#{contents} 
+		where num = #{num}	
+	</update>
+	
+	<delete id="boardDelete" parameterType="QnaVO">
+		delete from qna where num = #{num}	
+	</delete>
+	
+	<insert id="boardWrite" parameterType="QnaVO">
+		insert into qna values
+		(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, 0, 0, 0 )	
+	</insert>
+	
+	
+</mapper>
