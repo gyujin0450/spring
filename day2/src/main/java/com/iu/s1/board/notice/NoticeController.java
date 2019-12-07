@@ -23,5 +23,15 @@ public class NoticeController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/notice/boardSelect")
+	public ModelAndView boardSelect() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("boardSelect");
+		
+		mv.setViewName("board/boardSelect");
+		
+		return mv;
+	}
+	
 	
 }
