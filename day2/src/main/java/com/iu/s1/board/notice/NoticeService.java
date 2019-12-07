@@ -16,31 +16,26 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int boardWrite(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
 		return noticeDAO.boardWrite(boardVO);
 	}
 
 	@Override
 	public int boardUpdate(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
 		return noticeDAO.boardUpdate(boardVO);
 	}
 
 	@Override
 	public int boardDelete(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
 		return noticeDAO.boardDelete(boardVO);
 	}
 
 	@Override
 	public List<BoardVO> boardList() throws Exception {
-		// TODO Auto-generated method stub
 		return noticeDAO.boardList();
 	}
 
 	@Override
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
 		return noticeDAO.boardSelect(boardVO);
 	}
 

@@ -4,12 +4,14 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NoticeMapper">
-	<!--  
-	<select id="boardSelect" parameterType="java.lang.Integer" resultType="com.iu.s1.board.notice.NoticeVO">
-		select * from notice
-		where num = #{num}
+	
+	<select id="boardList" resultType="NoticeVO">
+		select * from
+			(select rownum R, N.* from
+				(select * from notice order by num desc) N )
+		where R between 1 and 10
 	</select>
-	 -->
+		
 	<select id="boardSelect" parameterType="NoticeVO" resultType="NoticeVO">
 		select * from notice
 		where num = #{num}

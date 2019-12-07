@@ -10,6 +10,28 @@
 </head>
 <body>
 <c:import url="../templete/nav.jsp"></c:import>
+
+<div class="container">
 	<h1>Board List Page...</h1>
+	<table class="table table-hover">
+		<tr>
+			<th>Num</th>
+			<th>Title</th>
+			<th>Write</th>
+			<th>Date</th>
+			<th>Hit</th>
+		</tr>
+	    <c:forEach items="${list}" var="vo">
+	    <tr>
+	    	<td>${vo.num}</td>
+	    	<td><a href="./boardSelect?num=${vo.num}">${vo.title}</a></td>
+	    	<td>${vo.writer}</td>
+	    	<td>${vo.reg_date}</td>
+	    	<td>${vo.hit}</td>
+	    </tr>
+	    </c:forEach>
+	</table>
+	<a href="./boardWrite" class="btn btn-danger">글쓰기</a>
+</div>
 </body>
 </html>
