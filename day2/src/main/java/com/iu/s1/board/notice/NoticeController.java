@@ -10,10 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class NoticeController {
 	
 	@RequestMapping(value="boardList", method = {RequestMethod.POST, RequestMethod.GET })
-	public String boardList(String name, int age) throws Exception {
-		// TO DO : 파라미터 이름과 동일 이름으로 처리 
-		System.out.println(name);
-		System.out.println(age);
+	public String boardList(NoticeVO noticeVO) throws Exception {
+		// TO DO : 멤버변수로 갖는 Bean(VO) 선언 
+		System.out.println(noticeVO.getNum());
+		System.out.println(noticeVO.getTitle());
 		System.out.println("notieBoard");
 		return "board/boardList";
 	}
