@@ -18,7 +18,7 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("notieWrite");
 
-		mv.setViewName("board/boadWrite");
+		mv.setViewName("board/boardWrite"); 
 		
 		return mv;
 	}
