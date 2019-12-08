@@ -22,6 +22,7 @@
       <!-- 다른 페이지에 포함되기 때문에 절대경로 지정해야 하고, 2가지 반업이 있음!!! -->
       <li><a href="${pageContext.request.contextPath}/notice/boardList">Notice</a></li>
       <li><a href="${root}qna/boardList">QnA</a></li>
+      <li><a href="#">KendoUI</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
