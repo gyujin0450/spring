@@ -26,7 +26,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("list", ar);
-		mv.setViewName("board/boardList");
+		mv.setViewName("board/qnaList");
 		return mv;
 		
 	}
@@ -114,6 +114,25 @@ public class QnaController {
 		qnaService.boardDelete(boardVO);
 		return "redirect:./boardList";
 	}
+	
+	
+	// Replay
+	@PostMapping(value = "boardReply")
+	public String boardReply2(BoardVO boardVO)throws Exception{
+		int result = qnaService.boardReply(boardVO);
+		
+		System.out.println("result:"+ result);
+		
+		return "redirect:./boardList";
+	}
+	
+	@GetMapping(value = "boardReply")
+	public ModelAndView boardReply(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo", boardVO);
+		mv.setViewName("board/boardReply");
+		return mv;
+	}	
 	
 	
 

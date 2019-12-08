@@ -4,10 +4,10 @@
 <html>
 <head>
 	<title>Home</title>
-	<c:import url="./templete/bootStrap.jsp"></c:import>
+	<c:import url="./template/bootStrap.jsp"></c:import>
 </head>
 <body>
-	<c:import url="./templete/nav.jsp"></c:import>
+	<c:import url="./template/nav.jsp"></c:import>
 <h1>
 	Hello world!  
 </h1>

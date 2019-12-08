@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../templete/bootStrap.jsp"></c:import>
+<c:import url="../template/bootStrap.jsp"></c:import>
 </head>
 <body>
-<c:import url="../templete/nav.jsp"></c:import>
+<c:import url="../template/nav.jsp"></c:import>
 	<!-- https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_form_basic&stacked=h -->
 	<!-- name 속성이 주요함 -->
 	<div class="container">

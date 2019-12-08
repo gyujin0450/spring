@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../templete/bootStrap.jsp"></c:import>
+<c:import url="../template/bootStrap.jsp"></c:import>
 </head>
 <body>
-<c:import url="../templete/nav.jsp"></c:import>
+<c:import url="../template/nav.jsp"></c:import>
 <div>
 	<h1>Board Select Page...</h1>
 	<!-- EL -->
@@ -18,6 +18,7 @@
 	
 	<a href="./boardUpdate?num=${vo.num}" class="btn btn-danger">Update</a>
 	<a href="./boardDelete?num=${vo.num}" class="btn btn-primary">Delete</a>
+	<a href="./boardReply?num=${vo.num}" class="btn btn-primary">Replay</a>
 	
 </div>
 		

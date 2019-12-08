@@ -38,5 +38,14 @@ public class QnaService implements BoardService {
 	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
 		return qnaDAO.boardSelect(boardVO);
 	}
+	
+	public int boardReply(BoardVO boardVO)throws Exception{
+		//step update
+		int result = qnaDAO.boardReplyUpdate(boardVO);
+		//insert
+		result = qnaDAO.boardReply(boardVO);
+		
+		return result;
+	}
 
 }

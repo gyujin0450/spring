@@ -27,13 +27,29 @@
 	<delete id="boardDelete" parameterType="QnaVO">
 		delete from qna where num = #{num}	
 	</delete>
-	
+
 	<insert id="boardWrite" parameterType="QnaVO">
 		<!-- DB 컬럼 순서 주의 -->
 		<!-- num,writer,title,contents,reg_date,hit,ref,step,depth -->
 		insert into qna values
-		(qna_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, 0, 0, 0 )	
+		(qna_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, 0, qna_seq.currval, 0 )	
 	</insert>
+
+	<!-- 댓글 처리 SQL -->
+		
+	<update id="boardReplyUpdate" parameterType="BoardVO">
+		update qna set step=step+1
+		where ref=(select ref from qna where num=#{num}) and
+		step > (select step from qna where num=#{num})
+	</update>
 	
+	<insert id="boardReply" parameterType="BoardVO">
+		insert into qna values
+		(qna_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0,
+			(select ref from qna where num=#{num}),
+			(select step+1 from qna where num=#{num}), 
+			(select depth+1 from qna where num=#{num})
+		)
+	</insert>	
 	
 </mapper>
