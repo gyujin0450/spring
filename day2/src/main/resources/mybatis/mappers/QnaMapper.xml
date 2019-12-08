@@ -30,6 +30,7 @@
 	
 	<insert id="boardWrite" parameterType="QnaVO">
 		<!-- DB 컬럼 순서 주의 -->
+		<!-- num,writer,title,contents,reg_date,hit,ref,step,depth -->
 		insert into qna values
 		(qna_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, 0, 0, 0 )	
 	</insert>
