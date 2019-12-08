@@ -29,8 +29,9 @@
 	</delete>
 	
 	<insert id="boardWrite" parameterType="QnaVO">
+		<!-- DB 컬럼 순서 주의 -->
 		insert into qna values
-		(qna_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, 0, 0, 0 )	
+		(qna_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, 0, 0, 0 )	
 	</insert>
 	
 	
