@@ -25,12 +25,29 @@ public class FileSave {
 		
 		file = new File(file, fileName);
 		
-		FileCopyUtils.copy(files.getBytes(), file);
+		FileCopyUtils.copy(files.getBytes(), file); // 방법1 : ???
 		
 		return fileName;		
 	}
 
 	// MultipartFile의 메소드 transferTo 메소드
-	
+	public String save2(String realPath, MultipartFile files) throws Exception {
+		
+		File file = new File(realPath);
+		
+		if(!file.exists()) {
+			file.mkdir();
+		}
+		
+		String fileName = UUID.randomUUID().toString();
+		fileName=fileName+"_"+files.getOriginalFilename();
+		
+		file = new File(file, fileName);
+		
+		files.transferTo(file); // 방법2 : ??
+		
+		return fileName;
+		
+	}
 	
 }

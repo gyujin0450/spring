@@ -27,7 +27,7 @@ public class NoticeController {
 		
 	@RequestMapping(value = "boardUpdate", method= RequestMethod.GET)
 	public ModelAndView boardUpdate(BoardVO boardVO) throws Exception {
-		// TODO : 컨트롤러와 view 연결 작업
+		// 컨트롤러와 view 연결 작업
 		ModelAndView mv = new ModelAndView();		
 		boardVO = noticeService.boardSelect(boardVO);
 		mv.addObject("vo", boardVO);

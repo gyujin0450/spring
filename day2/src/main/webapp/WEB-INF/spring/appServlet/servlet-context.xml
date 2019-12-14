@@ -19,9 +19,13 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
 	</beans:bean>
 	
-	
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<!-- 우선순위를 가장 높은 0으로 할당함 -->
+		<beans:property name="order" value="0" />
+	</beans:bean>
 	
 	<context:component-scan base-package="com.iu.s1" />
 	

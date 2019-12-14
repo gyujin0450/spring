@@ -11,6 +11,10 @@ public class FileDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="FilesMapper.";
 	
+	public FileVO fileSelect(FileVO fileVO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"fileSelct",fileVO);
+	}
+	
 	public int fileWriter(FileVO fileVO) throws Exception{
 				
 		return sqlSession.insert(NAMESPACE+"fileWriter",fileVO);

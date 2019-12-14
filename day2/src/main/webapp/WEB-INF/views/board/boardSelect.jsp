@@ -16,6 +16,12 @@
 	<h1>Num : ${vo.num}</h1>
 	<h1>Title : ${vo.title}</h1>
 	
+	<div class="row">
+		<c:forEach items={vo.files} var="file">
+			<p><a href="../files/fileDown?fnum=${file.fnum}"> ${file.oname} </a></p>			
+		</c:forEach>
+	</div>
+	
 	<a href="./boardUpdate?num=${vo.num}" class="btn btn-danger">Update</a>
 	<a href="./boardDelete?num=${vo.num}" class="btn btn-primary">Delete</a>
 	<a href="./boardReply?num=${vo.num}" class="btn btn-primary">Replay</a>

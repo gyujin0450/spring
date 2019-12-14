@@ -4,33 +4,58 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="NoticeMapper">
+	<!-- ??? -->
+	<resultMap type="NoticeVO" id="notice">
+		<id column="num" property="num" />
+		<result column="title" property="title" />
+		<result column="writer" property="writer" />
+		<result column="contents" property="contents" />
+		<result column="reg_date" property="reg_date" />
+		<result column="hit" property="hit" />
+		
+		<collection property="files" javaType="java.util.ArrayList" ofType="FileVO">
+			<id column="fnum" property="fnum" />
+			<result column="fname" property="fname" />
+			<result column="oname" property="oname" />
+		</collection>
+	</resultMap>
 	
 	<select id="boardList" resultType="NoticeVO">
 		select * from
-			(select rownum R, N.* from
-				(select * from notice order by num desc) N )
+		(select rownum R, N.* from
+		(select * from notice order by num desc) N )
 		where R between 1 and 10
 	</select>
-		
-	<select id="boardSelect" parameterType="NoticeVO" resultType="NoticeVO">
-		select * from notice
-		where num = #{num}
+
+	<select id="boardSelect" parameterType="NoticeVO"
+		resultMap="notice">
+		select N.* , F.*
+		from notice N full join files F
+		on (N.num = F.num)
+		where N.num = #{num}
 	</select>
-	
-	<!-- insert, update, delete의 결과는 숫자이기 때문에 resultType를 쓰지 않음, NoticeVO 보다 BoardVO를 보냄 -->
+
+	<!-- insert, update, delete의 결과는 숫자이기 때문에 resultType를 쓰지 않음, NoticeVO 보다 
+		BoardVO를 보냄 -->
 	<update id="boardUpdate" parameterType="BoardVO">
-		update notice 
-		set title=#{title}, contents=#{contents} 
+		update notice
+		set title=#{title}, contents=#{contents}
 		where num = #{num}
 	</update>
-	
+
 	<delete id="boardDelete" parameterType="BoardVO">
-		delete from notice where num = #{num}	
+		delete from notice where num = #{num}
 	</delete>
-	
+
+	<!-- MySQL 인 경우엔 속성에서... -->
 	<insert id="boardWrite" parameterType="BoardVO">
+		<selectKey order="BEFORE" keyProperty="num"
+			resultType="Integer">
+			select board_seq.nextval from dual
+		</selectKey>
+
 		insert into notice values
-		(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0 )	
+		(#{num}, #{title}, #{writer}, #{contents}, sysdate, 0 )
 	</insert>
 
 </mapper>    
