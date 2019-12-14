@@ -1,0 +1,5 @@
+.gitignore
+day2/document/
+day2/target/
+day2/.settings/
+*.class

@@ -1,0 +1,72 @@
+1. 환경설정
+
+
+		Spring Frame Work		:	Java,   DB, Servlet, jsp,  HTML, CSS, JS, JQUERY, AJAX 
+
+
+		1. 환경설정
+
+		1) Sping Tool Suite	Download
+		- https://spring.io/tools3/sts/all
+
+		2) JDK 1.8 설치
+
+		3) Was- (Tomcat 9.0, 내장 Was)
+
+		4) DB(Oracle)
+
+		5) Web browser (Chrome)
+
+=========================================================================
+		STS 환경 설정
+
+
+		--  Encoding : UTF-8
+
+		window -> preference
+
+		1) General -> workspace 
+
+		2) Web	-> css, html, jsp
+
+		-- Web browser
+
+		window- > preferences -> web browser 선택(크롬)
+
+============================================================================
+		프로젝트 생성 설정
+
+		Legacy Project -> template: MVC 선택
+
+		API 설정
+
+
+
+============================================================================
+		
+		Junit
+
+		--pom.xml
+		Spring Framework	: 4.3.2 버전 업데이트
+		Junit		: 4.12 버전 업데이트
+		Spring-test	: 추가
+
+		@RunWith(SpringJUnit4ClassRunner.class)
+		@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/**/*-context.xml")
+		public abstract class TestAbstract {}
+
+		public class Test abstract TestAbstract{
+			@Test
+			public void test(){}
+		}		
+
+
+
+==============================================================================
+		Error
+
+		1. 프로젝트 우클릭 -> run as -> maven clean : 컴파일 되어 있는 class 삭제.
+		2. 프로젝트 우클릭 -> maven -> update project : API 새로 갱신
+
+		-- 
+

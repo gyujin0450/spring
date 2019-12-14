@@ -1,0 +1,224 @@
+2. Defendency Inject(DI) &  Inversion Of Control (IOC)
+
+		-- Container
+		 	- 객체를 생성하고 연결해주는 역활
+			- 객체의 생명주기(Life cycle) 관리
+			- 의존성을 이어주는 역활
+
+		-- DI
+			- 의존성 주입
+
+		-- IoC
+			- 제어의 역전, 역제어
+			- 의존성 주입을 개발자가 아니라 Container 위임
+
+		-- Bean
+			- Spring IoC Container에서 생성되고 관리되는 객체를 의미
+
+
+		1 .XML
+			- Spring 설정파일(root-context.xml, servlet-context.xml,...) 작성
+
+			- 객체 생성
+			<bean class="풀패키지명.클래스명" id="변수명" lazy-init="boolean"></bean>	
+				-- id는 container 내에서 유일한 이름.
+				-- lazy-init
+				   객체의 생성 시기
+				   default, true	: Was가 가동될때 생성
+				   false		: 해당 객체가 필요한 시점에서 생성
+
+			- 의존성 주입
+				setter, constructor(생성자)를 이용한 방식
+			1) setter
+			<bean class="풀패키지명.클래스명" id="변수명" lazy-init="boolean">
+				<property name="setter의이름" value="String or Primitive Type">
+				<property name="setter의이름" ref="Reference Type의 참조변수명">	
+			</bean>	
+
+			2) Constructor
+			<bean class="풀패키지명.클래스명" id="변수명" lazy-init="boolean">
+				-- 매개변수로 맵핑
+				<constructor-arg name="매개변수명" value="String or Primitive Type"></constructor-arg>
+				<constructor-arg name="매개변수명" ref="Reference Type의 참조변수명"></constructor-arg>
+
+				-- index번호(순서)로 맵핑
+				<constructor-arg index="0" value="String or Primitive Type"></constructor-arg>
+				<constructor-arg index="1" ref="Reference Type의 참조변수명"></constructor-arg>			
+
+				-- Data type으로 맵핑
+				<constructor-arg type="java.lang.String" value="String or Primitive Type"></constructor-arg>
+				<constructor-arg type="java.lang.Integer" ref="Reference Type의 참조변수명"></constructor-arg>
+			</bean>	
+			
+
+
+		2. Annotation
+		   -- servlet-context.xml
+			<context:component-scan base-package="com.iu.s1" /> : 확인
+			-- com.iu.s1 패키지및 하위패키지 포함 annotation scan
+			-- 추가 가능	
+
+			-- 객체 생성
+				-- 클래스 선언부 위에 작성
+				@Controller	: 객체생성, Controller 역활을 부여
+				@Service		: 객체생성, Service 역활을 부여
+				@Repository	: 객체생성, DAO 역활을 부여	
+				@Component	: 객체생성, 그외 나머지
+
+
+			-- 객체 주입
+				-- @Inject	: Data type으로 맵핑, Java에서 제공
+					-@ Named()
+				-- @Autowired	: Data type으로 맵핑, 같은 Data Type이 있으면 같은 이름으로 맵핑 Spring에서 제공
+					-- @Qualifier("")
+				-- @Resource(name="")	: Name으로 맵핑
+
+				-- filed
+				-- setter
+				-- constructor
+
+============================================================================
+	 properties
+
+	DB 연결정보나 , 파일의 저장경로등 스프링 설정 파일에 필요한 내용을 외부 파일로 따로 관리
+
+	1. properties 파일 준비
+
+		1) 파일의 위치
+		    src/main/resources/디렉터리명/****.properties
+
+		2) 파일 작성
+			키=밸류
+
+	2. properties 파일 읽기
+
+		1) property-placeholder
+			- ***-context.xml 파일에 namespace 중에서 context 추가
+			- <context:property-placeholder location="properties 파일의 경로명과 파일명" file-encoding="UTF-8"/>
+
+			---- XML 에서 properties 사용
+				${properties의 키}	
+
+			---- Java 에서 properties 사용
+				@Value("${properties의 키}")
+
+		2) util - proproperties
+			- ***-context.xml 파일에 namespace 중에서 util 추가	
+			- <util:properties location="properties 파일의 경로명과 파일명" id="id명"></util:properties>
+
+			---- XML 에서 properties 사용
+				#{id명['properties의 키']}
+
+			---- Java 에서 properties 사용
+				@Value("#{id명['properties의 키']}")
+
+	3. 주의 사항
+		-- properties 선언한  context.xml에서는 적용이 되지만 다른 context.xml에서는 적용 X
+		-- properties를 사용할 context.xml 마다 따로 따로 선언
+
+=============================================================================
+	Presentaion Layer
+		업무 프로그램과 사용자간의 Interface를 담당 하는 Layer
+		사용자의 화면 구성, 사용자가 입력한 정보들을 검증하는 기능을 제공
+		
+		-- 핵심 Component
+			1) DispathcerServlet
+				Spring의 Front Controller
+				웹 요청과 응답의 Life Cycle을 주관
+			2) HandlerMapping
+				웹 요청시 해당 URL을 어떤 Controller가 처리할지 결정
+				해당 Controller의 객체를 리턴
+				
+			3) Controller
+				비지니스 로직을 실행하고 결과 데이터를 ModelAndView에 반영 
+				ModelAndView 객체를 리턴
+			
+			4) ModelAndView
+				Controller가 수행 결과를 반영하는 Model 데이터 객체와
+				이동할 페이지(View 객체)의 정보로 이루어짐
+				
+			5) ViewResolver
+				어떤 View를 선택할 지 결정
+			
+			6) View
+				결과 데이터인 Model 객체를 dispaly(출력, jsp)
+				
+	1. Controller
+		1) Controller 작성은 POJO(Plain Old Java Object)로 작성
+		2) 클래스의 선언부에 @Controller 선언
+		3) 멤버 메서드 선언
+			- 리턴 타입
+				- void 	: ViewName을 URL 경로명 설정
+				- String : 리턴되는 Stringdl ViewName으로 설정
+				- ModelAndView : Model + View
+				- Model	 : ViewName을 URL 경로명 설정
+			
+			- 매개변수 
+				파라미터 맵핑 용도
+				1) HttpServletRequest request
+				2) 파라미터 이름과 동일 한 이름, 동일한 데이타 타입을 선언
+				3) 파라미터형태를 멤버변수로 갖는 Bean(VO) 선언
+				4) Model 	 
+		
+		
+		@Controller
+		
+		@RequestMapping(value="맵핑할 URL주소", method=RequestMethod.GET or POST)
+
+=============================================================================
+
+		MyBatis
+
+		1. API 다운
+			1) mybatis
+			2) mybatis - spring
+			3) spring - jdbc
+			4) ojdbc6
+		
+				
+		게시판
+
+		공지사항: 글쓰기 - 관리자만 (제목, 내용, 첨부파일)
+			 글보기 - 누구나
+			 글수정 - 관리자만 (제목, 내용)
+			 글삭제 - 관리자만 (글번호) 	
+			 글리스트
+		
+			글번호, 작성자, 제목, 내용, 작성날짜, 조회수
+			Notice
+			num    Number(8) constraint notice_num_pk primary key
+			writer	varchar2(400) 
+			title	varchar2(400)
+			contents varchar2(4000)
+			reg_date Date
+			hit	number(8)
+
+			Qna
+			num    Number(8) constraint qna_num_pk primary key
+			writer	varchar2(400) 
+			title	varchar2(400)
+			contents varchar2(4000)
+			reg_date Date
+			hit	number(8)
+			ref	number(8)
+			step	number(8)
+			depth 	number(8)
+	
+			글번호, 작성자, 제목, 내용, 작성날짜, 조회수, ref, step, depth
+
+		QNA
+			글쓰기 - 회원들이상(제목, 내용, 첨부파일)
+   			글보기 - 회원들이상
+			글수정 - 작성자만(제목, 내용, 첨부파일)
+			글삭제 - 작성자만(글번호)
+			답글달기 - 회원들만
+			글리스트 - 누구나
+		
+
+		회원관리
+			회원가입
+			로그인
+			로그아웃
+			마이페이지
+			정보변경
+			탈퇴

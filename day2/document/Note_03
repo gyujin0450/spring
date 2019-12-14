@@ -1,0 +1,39 @@
+=========================================================
+	
+	REF 
+		원본 : 자기자신의 글번호
+		답글 : 부모글 REF 를 자기자신의 REF
+
+	Step	
+		원본 : 0
+		답글 :
+			1) ref가 부모의 ref와 같고, step이 부모의 step보다 큰것들을 step=step+1
+			2) 부모의 step+1 값을 자기의 step
+
+	Depth 	
+		원본 : 0
+		답글 : 부모의 depth +1 값을 자기의 depth
+
+
+
+	NUM	TITLE	REF	STEP	DEPTH
+	1	1	1	0	
+	2	2	2	0
+	3	3	3	0
+	4	2_1	2	3		
+	5	2_1_1	2	4
+	6	2_2	2	1
+	7	2_2_1	2	2
+
+
+	select * from qna order by ref desc, step asc
+
+
+	NUM	TITLE	REF	STEP	DEPTH
+	3	3	3	0	0
+	2	2	2	0	0
+	6	2_2	2	1	1
+	7	2_2_1	2	2	2
+	4	2_1	2	3	1	
+	5	2_1_1	2	4	2
+	1	1
