@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s1.board.BoardVO;
@@ -63,11 +64,11 @@ public class NoticeController {
 	
 	// 입력 양식의 내용을 DB에 저장함
 	@RequestMapping(value="boardWrite", method = RequestMethod.POST)
-	public String boardWirte(BoardVO boardVO) throws Exception {
+	public String boardWirte(BoardVO boardVO, MultipartFile [] files) throws Exception {
 		
 //		System.out.println(boardVO.getTitle());
 		
-		int result = noticeService.boardWrite(boardVO);
+		int result = noticeService.boardWrite(boardVO, files);
 		String view = "";
 		
 		if(result > 0 ) {

@@ -28,11 +28,13 @@
 	    </div>
 	    <div class="form-group">
 	      <label for="contents">Contents:</label>
-	      <textarea rows="20" cols="" id="contents" class="form-control" name="contents"></textarea>
+	      <!-- <textarea rows="20" cols="" id="contents" class="form-control" name="contents"></textarea> -->
+	      <textarea rows="20" cols="" class="form-control" name="contents"></textarea>
 	    </div>
 	    <!-- 파일 후 commons-fileupload  -->
 	    <div class="form-group">
 	      <label for="files">Files:</label>
+	      <input type="file" name="files" class="form-control">
 	      <input type="file" name="files" class="form-control">
 	    </div>
 	    

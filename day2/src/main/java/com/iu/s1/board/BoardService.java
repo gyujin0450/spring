@@ -2,10 +2,13 @@ package com.iu.s1.board;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface BoardService {
 
 	//글쓰기
-	public int boardWrite(BoardVO boardVO) throws Exception;
+//	public int boardWrite(BoardVO boardVO) throws Exception;
+	public int boardWrite(BoardVO boardVO, MultipartFile [] files) throws Exception;
 	
 	//글수정
 	public int boardUpdate(BoardVO boardVO)throws Exception;

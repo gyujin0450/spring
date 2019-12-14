@@ -8,31 +8,21 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 		
 	<!-- Namespaces 에서 context를 추가하고 아래 내용 설정 	-->
+	<!-- 
 	<context:property-placeholder location="classpath:/properties/*" file-encoding="UTF-8"/>
-
+ 	-->
 	<!-- cf) util:properties 를 이용하는 방법도 있음... https://cornswrold.tistory.com/95 -->
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<util:properties location="classpath:/properties/*" id="data"></util:properties>
 	
-	<!-- DataSource -->
-	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="username" value="${oracle.user}"></property>
-		<property name="password" value="${oracle.pw}"></property>
-		<property name="url" value="${oracle.url}"></property>
-	    <property name="driverClassName" value="${oracle.driver}"></property>
+	<!-- file Upload 관련 -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 파일당 허용 크기 byte 단위 -->
+		<property name="maxUploadSizePerFile" value="10485760"></property>
+		<!-- 파일 전체 허용 크기 byte 단위 -->
+		<property name="maxUploadSize" value="104857600"></property>
 	</bean>
-	
-	
-	<!-- SqlSessionFactory -->
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-		<property name="mapperLocations" value="classpath:/mybatis/mappers/*Mapper.xml"></property>
-		<property name="configLocation" value="classpath:/mybatis/config/mybatisConfig.xml"></property>
-	</bean>
-
-	<!-- SqlSessionTemplete -->
-	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
-	</bean>	
 	
 </beans>

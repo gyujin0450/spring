@@ -10,5 +10,6 @@
   		<typeAlias type="com.iu.s1.board.BoardVO" alias="BoardVO"/>
   		<typeAlias type="com.iu.s1.board.notice.NoticeVO" alias="NoticeVO"/>
   		<typeAlias type="com.iu.s1.board.qna.QnaVO" alias="QnaVO"/>
+  		<typeAlias type="com.iu.s1.files.FileVO" alias="FileVO"/>
   	</typeAliases>
   </configuration>
