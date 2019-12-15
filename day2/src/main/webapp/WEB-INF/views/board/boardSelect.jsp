@@ -17,7 +17,7 @@
 	<h1>Title : ${vo.title}</h1>
 	
 	<div class="row">
-		<c:forEach items={vo.files} var="file">
+		<c:forEach items="${vo.files}" var="file">
 			<p><a href="../files/fileDown?fnum=${file.fnum}"> ${file.oname} </a></p>			
 		</c:forEach>
 	</div>

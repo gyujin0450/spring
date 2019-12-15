@@ -45,7 +45,7 @@ public class NoticeService implements BoardService {
 				fileVO.setFname(filename);
 				fileVO.setOname(multipartFile.getOriginalFilename());
 				
-				result=fileDAO.fileWriter(fileVO);
+				result=fileDAO.fileWrite(fileVO);
 				
 			}
 		}

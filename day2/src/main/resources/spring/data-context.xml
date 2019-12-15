@@ -3,14 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- DataSource -->
+	<!-- DataSource Old
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="username" value="${oracle.user}"></property>
 		<property name="password" value="${oracle.pw}"></property>
-		<property name="url" value="${oracle.url}"></property>
+		<property name="url" value="${oracle.url]}"></property>
 	    <property name="driverClassName" value="${oracle.driver}"></property>
 	</bean>
-	
+	-->
+
+	<!-- DataSource New-->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="username" value="#{data['oracle.user']}"></property>
+		<property name="password" value="#{data['oracle.pw']}"></property>
+		<property name="url" value="#{data['oracle.url']}"></property>
+	    <property name="driverClassName" value="#{data['oracle.driver']}"></property>
+	</bean>
 	
 	<!-- SqlSessionFactory -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">

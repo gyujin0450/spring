@@ -3,9 +3,11 @@ package com.iu.s1.util;
 import java.io.File;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+@Component
 public class FileSave {
 	
 	// Spring 에서 제공하는 FileCopyUtils 클래스의 Copy method

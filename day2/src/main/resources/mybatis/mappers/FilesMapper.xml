@@ -8,7 +8,7 @@
 		select * from files where fnum=#{fnum}	
 	</select>
  
-	<insert id="filesWrite" parameterType="FileVO">
+	<insert id="fileWrite" parameterType="FileVO">
 		insert into files values(board_seq.nextval, #{num}, #{fname}, #{oname})
 	</insert>
 

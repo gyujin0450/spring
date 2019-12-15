@@ -15,9 +15,9 @@ public class FileDAO {
 		return sqlSession.selectOne(NAMESPACE+"fileSelct",fileVO);
 	}
 	
-	public int fileWriter(FileVO fileVO) throws Exception{
+	public int fileWrite(FileVO fileVO) throws Exception{
 				
-		return sqlSession.insert(NAMESPACE+"fileWriter",fileVO);
+		return sqlSession.insert(NAMESPACE+"fileWrite",fileVO);
 		
 	}
 	
