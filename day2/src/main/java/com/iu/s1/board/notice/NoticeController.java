@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s1.board.BoardVO;
+import com.iu.s1.util.Pager;
 
 @Controller
 @RequestMapping(value = "/notice/**") // Notice 아래 모든 폴덜/파일
@@ -52,9 +53,9 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value="boardList", method = {RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView boardList() throws Exception {
+	public ModelAndView boardList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardVO> ar = noticeService.boardList();
+		List<BoardVO> ar = noticeService.boardList(pager);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("board/boardList");

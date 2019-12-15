@@ -3,6 +3,8 @@ package com.iu.s1.board;
 
 import java.util.List;
 
+import com.iu.s1.util.Pager;
+
 public interface BoardDAO {
 	
 	//글쓰기
@@ -15,7 +17,7 @@ public interface BoardDAO {
 	public int boardDelete(BoardVO boardVO)throws Exception;
 	
 	//글리스트
-	public List<BoardVO> boardList() throws Exception;
+	public List<BoardVO> boardList(Pager pager) throws Exception;
 	
 	//글보기
 	public BoardVO boardSelect(BoardVO boardVO)throws Exception;

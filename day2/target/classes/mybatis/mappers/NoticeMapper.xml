@@ -20,11 +20,11 @@
 		</collection>
 	</resultMap>
 	
-	<select id="boardList" resultType="NoticeVO">
+	<select id="boardList" resultType="NoticeVO" parameterType="Pager">
 		select * from
 		(select rownum R, N.* from
 		(select * from notice order by num desc) N )
-		where R between 1 and 10
+		where R between #{startRow} and #{lastRow}
 	</select>
 
 	<select id="boardSelect" parameterType="NoticeVO"

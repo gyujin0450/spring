@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.s1.board.BoardDAO;
 import com.iu.s1.board.BoardVO;
+import com.iu.s1.util.Pager;
 
 @Repository
 public class NoticeDAO implements BoardDAO {
@@ -34,8 +35,8 @@ public class NoticeDAO implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> boardList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"boardList");
+	public List<BoardVO> boardList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"boardList", pager);
 	}
 
 	@Override
@@ -44,6 +45,11 @@ public class NoticeDAO implements BoardDAO {
 		// return sqlSession.selectOne(NAMESPACE+"boardSelect", num);
 		
 		return sqlSession.selectOne(NAMESPACE+"boardSelect", boardVO.getNum());
+	}
+
+	public int boardCount() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

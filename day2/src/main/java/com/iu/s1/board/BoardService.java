@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.s1.util.Pager;
+
 public interface BoardService {
 
 	//글쓰기
@@ -17,7 +19,7 @@ public interface BoardService {
 	public int boardDelete(BoardVO boardVO)throws Exception;
 	
 	//글리스트
-	public List<BoardVO> boardList() throws Exception;
+	public List<BoardVO> boardList(Pager pager) throws Exception;
 	
 	//글보기
 	public BoardVO boardSelect(BoardVO boardVO)throws Exception;

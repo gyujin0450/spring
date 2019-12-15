@@ -35,7 +35,17 @@
 	    </tr>
 	    </c:forEach>
 	</table>
+	
+	<a href="./boardList?curPage=${pager.startNum-1}">[이전]</a>
+	
+	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+		<a href="./boardList?curPage=${i}">${i}</a>
+	</c:forEach>
+	
+	<a href="./boardList?curPage=${pager.lastNum+1}">[다음]</a>
+		
 	<a href="./boardWrite" class="btn btn-danger">글쓰기</a>
+	
 </div>
 </body>
 </html>

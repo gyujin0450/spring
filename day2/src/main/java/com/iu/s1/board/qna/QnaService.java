@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s1.board.BoardService;
 import com.iu.s1.board.BoardVO;
+import com.iu.s1.util.Pager;
 
 @Service
 public class QnaService implements BoardService {
@@ -31,8 +32,8 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> boardList() throws Exception {
-		return qnaDAO.boardList();
+	public List<BoardVO> boardList(Pager pager ) throws Exception {
+		return qnaDAO.boardList(pager);
 	}
 
 	@Override

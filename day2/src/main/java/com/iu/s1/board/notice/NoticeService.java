@@ -13,6 +13,7 @@ import com.iu.s1.board.BoardVO;
 import com.iu.s1.files.FileDAO;
 import com.iu.s1.files.FileVO;
 import com.iu.s1.util.FileSave;
+import com.iu.s1.util.Pager;
 
 @Service
 public class NoticeService implements BoardService {
@@ -64,13 +65,19 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> boardList() throws Exception {
-		return noticeDAO.boardList();
+	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
+		return noticeDAO.boardSelect(boardVO);
 	}
 
 	@Override
-	public BoardVO boardSelect(BoardVO boardVO) throws Exception {
-		return noticeDAO.boardSelect(boardVO);
+	public List<BoardVO> boardList(Pager pager) throws Exception {
+		
+		pager.makeRow();
+		
+		int count = noticeDAO.boardCount();
+		pager.makePage(count);
+		
+		return noticeDAO.boardList(pager);
 	}
 
 }

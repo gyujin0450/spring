@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.s1.board.BoardVO;
+import com.iu.s1.util.Pager;
 
 @Controller
 @RequestMapping(value = "/qna/**") // Notice 아래 모든 폴덜/파일
@@ -22,8 +23,8 @@ public class QnaController {
 	
 	// List
 	@GetMapping(value="boardList")
-	public ModelAndView boardList() throws Exception {
-		List<BoardVO> ar = qnaService.boardList();
+	public ModelAndView boardList(Pager pager) throws Exception {
+		List<BoardVO> ar = qnaService.boardList(pager);
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("list", ar);
